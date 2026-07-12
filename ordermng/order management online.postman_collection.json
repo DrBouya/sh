@@ -1,0 +1,1521 @@
+{
+  "info": {
+    "_postman_id": "f107a608-ef65-4634-8f70-bc0a11314158",
+    "name": "order management online",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55164037"
+  },
+  "item": [
+    {
+      "name": "order success",
+      "item": [
+        {
+          "name": "get total",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let res = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"id\", res.order.id);\r",
+                  "console.log(pm.environment.get(\"id\"));\r",
+                  "\r",
+                  "pm.environment.set(\"state\", res.order.state);\r",
+                  "\r",
+                  "pm.test(\"Status Code is 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(201);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}/state",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}",
+                "state"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "delete order (CANCELLED)",
+      "item": [
+        {
+          "name": "get total",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let res = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"id\", res.order.id);\r",
+                  "console.log(pm.environment.get(\"id\"));\r",
+                  "\r",
+                  "pm.environment.set(\"state\", res.order.state);\r",
+                  "\r",
+                  "pm.test(\"Status Code is 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(201);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "const schema = {\r",
+                  "    \"type\" : \"object\",\r",
+                  "    \"properties\" : {\r",
+                  "        \"order\" : {\r",
+                  "            \"type\": \"object\",\r",
+                  "            \"properties\" : {\r",
+                  "                \"id\" : {\r",
+                  "                 \"type\" : \"string\"\r",
+                  "                },\r",
+                  "                \"customer\":{\r",
+                  "                \"type\": \"string\"\r",
+                  "                },\r",
+                  "                \"items\": {\r",
+                  "                \"type\" : \"array\",\r",
+                  "                \"properties\":{\r",
+                  "                \"productId\": {\r",
+                  "                    \"type\" : \"string\"\r",
+                  "                },\r",
+                  "                \"qty\" : {\"type\" : \"string\"}\r",
+                  "                },\r",
+                  "            \"required\" : [\"productId\", \"qty\"]\r",
+                  "\r",
+                  "        },\r",
+                  "        \"state\" : {\r",
+                  "            \"type\" : \"string\" \r",
+                  "        },\r",
+                  "        \"createdAt\" : { \"type\" : \"string\"\r",
+                  "        },\r",
+                  "        \"updatedAt\" : { \"type\" : \"string\"}\r",
+                  "    },\r",
+                  "    \"required\" : [\"id\", \"customer\" , \"items\" , \"state\" , \"createdAt\" , \"updatedAt\"]\r",
+                  "            }\r",
+                  "    },\r",
+                  "required : [\"order\"]\r",
+                  "};\r",
+                  "\r",
+                  "pm.test(\"json schema validation\" , function(){\r",
+                  "pm.response.to.have.jsonSchema(schema);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CANCELLED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}/state",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}",
+                "state"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status Copy 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "delete order (new)",
+      "item": [
+        {
+          "name": "get total",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let res = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"id\", res.order.id);\r",
+                  "console.log(pm.environment.get(\"id\"));\r",
+                  "\r",
+                  "pm.environment.set(\"state\", res.order.state);\r",
+                  "\r",
+                  "pm.test(\"Status Code is 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(201);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "const schema = {\r",
+                  "    \"type\" : \"object\",\r",
+                  "    \"properties\" : {\r",
+                  "        \"order\" : {\r",
+                  "            \"type\": \"object\",\r",
+                  "            \"properties\" : {\r",
+                  "                \"id\" : {\r",
+                  "                 \"type\" : \"string\"\r",
+                  "                },\r",
+                  "                \"customer\":{\r",
+                  "                \"type\": \"string\"\r",
+                  "                },\r",
+                  "                \"items\": {\r",
+                  "                \"type\" : \"array\",\r",
+                  "                \"properties\":{\r",
+                  "                \"productId\": {\r",
+                  "                    \"type\" : \"string\"\r",
+                  "                },\r",
+                  "                \"qty\" : {\"type\" : \"string\"}\r",
+                  "                },\r",
+                  "            \"required\" : [\"productId\", \"qty\"]\r",
+                  "\r",
+                  "        },\r",
+                  "        \"state\" : {\r",
+                  "            \"type\" : \"string\" \r",
+                  "        },\r",
+                  "        \"createdAt\" : { \"type\" : \"string\"\r",
+                  "        },\r",
+                  "        \"updatedAt\" : { \"type\" : \"string\"}\r",
+                  "    },\r",
+                  "    \"required\" : [\"id\", \"customer\" , \"items\" , \"state\" , \"createdAt\" , \"updatedAt\"]\r",
+                  "            }\r",
+                  "    },\r",
+                  "required : [\"order\"]\r",
+                  "};\r",
+                  "\r",
+                  "pm.test(\"json schema validation\" , function(){\r",
+                  "pm.response.to.have.jsonSchema(schema);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Unauthorized-401",
+      "item": [
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 401\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "Bearer 111",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "invalid input - 400",
+      "item": [
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "Bearer 111",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 400\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(400);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    //\"customer\": 123,\r\n    \"items\": [\r\n        {\r\n            //\"productId\": \"p1\"\r\n            //\"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "invalid id - 404",
+      "item": [
+        {
+          "name": "get total",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let res = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"id\", res.order.id);\r",
+                  "console.log(pm.environment.get(\"id\"));\r",
+                  "\r",
+                  "pm.environment.set(\"state\", res.order.state);\r",
+                  "\r",
+                  "pm.test(\"Status Code is 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(201);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 404\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/123456",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "123456"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "invalid status- 409",
+      "item": [
+        {
+          "name": "get total",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let res = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"id\", res.order.id);\r",
+                  "console.log(pm.environment.get(\"id\"));\r",
+                  "\r",
+                  "pm.environment.set(\"state\", res.order.state);\r",
+                  "\r",
+                  "pm.test(\"Status Code is 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(201);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get total Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Baseurl}}/orders",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customer\": \"Ali\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"p1\",\r\n            \"qty\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}/state",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}",
+                "state"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status Copy 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "pm.test(\"Status Code is 409\", function () {\r",
+                  "    pm.expect(pm.response.code).to.eql(409);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "validtoken123",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"newState\": \"CONFIRMED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/orders/{{id}}",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
